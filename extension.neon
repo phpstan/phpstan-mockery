@@ -1,0 +1,10 @@
+services:
+	-
+		class: PHPStan\Mockery\Type\MockDynamicReturnTypeExtension
+		tags:
+			- phpstan.broker.dynamicStaticMethodReturnTypeExtension
+
+	-
+		class: PHPStan\Mockery\PhpDoc\TypeNodeResolverExtension
+		tags:
+			- phpstan.phpDoc.typeNodeResolverExtension
