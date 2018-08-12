@@ -22,7 +22,10 @@ class MockDynamicReturnTypeExtension implements DynamicStaticMethodReturnTypeExt
 
 	public function isStaticMethodSupported(MethodReflection $methodReflection): bool
 	{
-		return $methodReflection->getName() === 'mock';
+		return in_array($methodReflection->getName(), [
+			'mock',
+			'spy',
+		], true);
 	}
 
 	public function getTypeFromStaticMethodCall(
