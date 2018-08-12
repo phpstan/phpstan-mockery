@@ -24,7 +24,7 @@ class ShouldReceiveDynamicReturnTypeExtension implements DynamicMethodReturnType
 
 	public function getTypeFromMethodCall(MethodReflection $methodReflection, MethodCall $methodCall, Scope $scope): Type
 	{
-		return new ObjectType(\Mockery\CompositeExpectation::class);
+		return new ObjectType('Mockery\\CompositeExpectation');
 	}
 
 }
