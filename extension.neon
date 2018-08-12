@@ -5,6 +5,11 @@ services:
 			- phpstan.broker.dynamicStaticMethodReturnTypeExtension
 
 	-
+		class: PHPStan\Mockery\Type\ShouldReceiveDynamicReturnTypeExtension
+		tags:
+			- phpstan.broker.dynamicMethodReturnTypeExtension
+
+	-
 		class: PHPStan\Mockery\PhpDoc\TypeNodeResolverExtension
 		tags:
 			- phpstan.phpDoc.typeNodeResolverExtension
