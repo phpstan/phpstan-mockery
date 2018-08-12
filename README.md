@@ -7,7 +7,11 @@
 * [PHPStan](https://github.com/phpstan/phpstan)
 * [Mockery](https://github.com/mockery/mockery)
 
-This extension TODO
+This extension provides the following features:
+
+* Interprets `Foo|\Mockery\MockInterface` in phpDoc so that it results in an intersection type instead of a union type.
+* `Mockery::mock()` and `Mockery::spy()` return an intersection type (see the [detailed explanation of intersection types](https://medium.com/@ondrejmirtes/union-types-vs-intersection-types-fd44a8eacbb)) so that the returned object can be used as both the mock object and the mocked class object.
+* `shouldReceive()` and `allows()` methods can be called on the mock object and they work as expected.
 
 ## Usage
 
