@@ -14,7 +14,7 @@ class ShouldReceiveDynamicReturnTypeExtension implements DynamicMethodReturnType
 
 	public function getClass(): string
 	{
-		return \Mockery\MockInterface::class;
+		return 'Mockery\\MockInterface';
 	}
 
 	public function isMethodSupported(MethodReflection $methodReflection): bool
