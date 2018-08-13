@@ -22,6 +22,15 @@ class MockeryTest extends \PHPUnit\Framework\TestCase
 		self::assertSame('foo', $fooMock->doFoo());
 	}
 
+	public function testExpectsMock(): void
+	{
+		$fooMock = \Mockery::mock(Foo::class);
+		$this->requireFoo($fooMock);
+
+		$fooMock->expects()->doFoo()->andReturns('foo');
+		self::assertSame('foo', $fooMock->doFoo());
+	}
+
 	public function testAnotherMockTest(): void
 	{
 		$fooMock = \Mockery::mock(Foo::class);
