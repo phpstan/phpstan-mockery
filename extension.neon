@@ -7,6 +7,13 @@ services:
 			stubInterfaceName: PHPStan\Mockery\Type\Allows
 
 	-
+		class: PHPStan\Mockery\Reflection\StubMethodsClassReflectionExtension
+		tags:
+			- phpstan.broker.methodsClassReflectionExtension
+		arguments:
+			stubInterfaceName: PHPStan\Mockery\Type\Expects
+
+	-
 		class: PHPStan\Mockery\Type\StubDynamicReturnTypeExtension
 		tags:
 			- phpstan.broker.dynamicMethodReturnTypeExtension
@@ -15,11 +22,26 @@ services:
 			stubMethodName: allows
 
 	-
+		class: PHPStan\Mockery\Type\StubDynamicReturnTypeExtension
+		tags:
+			- phpstan.broker.dynamicMethodReturnTypeExtension
+		arguments:
+			stubInterfaceName: PHPStan\Mockery\Type\Expects
+			stubMethodName: expects
+
+	-
 		class: PHPStan\Mockery\Type\ExpectationAfterStubDynamicReturnTypeExtension
 		tags:
 			- phpstan.broker.dynamicMethodReturnTypeExtension
 		arguments:
 			stubInterfaceName: PHPStan\Mockery\Type\Allows
+
+	-
+		class: PHPStan\Mockery\Type\ExpectationAfterStubDynamicReturnTypeExtension
+		tags:
+			- phpstan.broker.dynamicMethodReturnTypeExtension
+		arguments:
+			stubInterfaceName: PHPStan\Mockery\Type\Expects
 
 	-
 		class: PHPStan\Mockery\Type\MockDynamicReturnTypeExtension
