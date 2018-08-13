@@ -12,9 +12,17 @@ use PHPStan\Type\Type;
 class ExpectationAfterStubDynamicReturnTypeExtension implements DynamicMethodReturnTypeExtension
 {
 
+	/** @var string */
+	private $stubInterfaceName;
+
+	public function __construct(string $stubInterfaceName)
+	{
+		$this->stubInterfaceName = $stubInterfaceName;
+	}
+
 	public function getClass(): string
 	{
-		return Allows::class;
+		return $this->stubInterfaceName;
 	}
 
 	public function isMethodSupported(MethodReflection $methodReflection): bool

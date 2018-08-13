@@ -16,6 +16,18 @@ use PHPStan\Type\TypeWithClassName;
 class StubDynamicReturnTypeExtension implements DynamicMethodReturnTypeExtension
 {
 
+	/** @var string */
+	private $stubInterfaceName;
+
+	/** @var string */
+	private $stubMethodName;
+
+	public function __construct(string $stubInterfaceName, string $stubMethodName)
+	{
+		$this->stubInterfaceName = $stubInterfaceName;
+		$this->stubMethodName = $stubMethodName;
+	}
+
 	public function getClass(): string
 	{
 		return 'Mockery\\MockInterface';
@@ -23,7 +35,7 @@ class StubDynamicReturnTypeExtension implements DynamicMethodReturnTypeExtension
 
 	public function isMethodSupported(MethodReflection $methodReflection): bool
 	{
-		return $methodReflection->getName() === 'allows';
+		return $methodReflection->getName() === $this->stubMethodName;
 	}
 
 	public function getTypeFromMethodCall(MethodReflection $methodReflection, MethodCall $methodCall, Scope $scope): Type
@@ -40,7 +52,7 @@ class StubDynamicReturnTypeExtension implements DynamicMethodReturnTypeExtension
 
 		return TypeCombinator::intersect(
 			new StubObjectType($mockedType->getClassName()),
-			new ObjectType(Allows::class)
+			new ObjectType($this->stubInterfaceName)
 		);
 	}
 

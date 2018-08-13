@@ -2,7 +2,6 @@
 
 namespace PHPStan\Mockery\Reflection;
 
-use PHPStan\Mockery\Type\Allows;
 use PHPStan\Reflection\ClassReflection;
 use PHPStan\Reflection\MethodReflection;
 use PHPStan\Reflection\MethodsClassReflectionExtension;
@@ -10,9 +9,17 @@ use PHPStan\Reflection\MethodsClassReflectionExtension;
 class StubMethodsClassReflectionExtension implements MethodsClassReflectionExtension
 {
 
+	/** @var string */
+	private $stubInterfaceName;
+
+	public function __construct(string $stubInterfaceName)
+	{
+		$this->stubInterfaceName = $stubInterfaceName;
+	}
+
 	public function hasMethod(ClassReflection $classReflection, string $methodName): bool
 	{
-		return $classReflection->getName() === Allows::class;
+		return $classReflection->getName() === $this->stubInterfaceName;
 	}
 
 	public function getMethod(ClassReflection $classReflection, string $methodName): MethodReflection
