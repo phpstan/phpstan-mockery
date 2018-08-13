@@ -13,7 +13,7 @@ use PHPStan\Type\Type;
 use PHPStan\Type\TypeCombinator;
 use PHPStan\Type\TypeWithClassName;
 
-class AllowsDynamicReturnTypeExtension implements DynamicMethodReturnTypeExtension
+class StubDynamicReturnTypeExtension implements DynamicMethodReturnTypeExtension
 {
 
 	public function getClass(): string
@@ -39,7 +39,7 @@ class AllowsDynamicReturnTypeExtension implements DynamicMethodReturnTypeExtensi
 		}
 
 		return TypeCombinator::intersect(
-			new AllowsObjectType($mockedType->getClassName()),
+			new StubObjectType($mockedType->getClassName()),
 			new ObjectType(Allows::class)
 		);
 	}

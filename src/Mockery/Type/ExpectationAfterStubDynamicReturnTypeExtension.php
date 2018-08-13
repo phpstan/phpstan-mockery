@@ -9,7 +9,7 @@ use PHPStan\Type\DynamicMethodReturnTypeExtension;
 use PHPStan\Type\ObjectType;
 use PHPStan\Type\Type;
 
-class ExpectationAfterAllowsDynamicReturnTypeExtension implements DynamicMethodReturnTypeExtension
+class ExpectationAfterStubDynamicReturnTypeExtension implements DynamicMethodReturnTypeExtension
 {
 
 	public function getClass(): string

@@ -7,7 +7,7 @@ use PHPStan\Reflection\ClassReflection;
 use PHPStan\Reflection\MethodReflection;
 use PHPStan\Reflection\TrivialParametersAcceptor;
 
-class AllowsMethodReflection implements MethodReflection
+class StubMethodReflection implements MethodReflection
 {
 
 	/** @var ClassReflection */

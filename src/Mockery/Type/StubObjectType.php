@@ -4,7 +4,7 @@ namespace PHPStan\Mockery\Type;
 
 use PHPStan\Type\ObjectType;
 
-class AllowsObjectType extends ObjectType
+class StubObjectType extends ObjectType
 {
 
 }

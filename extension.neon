@@ -1,16 +1,16 @@
 services:
 	-
-		class: PHPStan\Mockery\Reflection\AllowsMethodsClassReflectionExtension
+		class: PHPStan\Mockery\Reflection\StubMethodsClassReflectionExtension
 		tags:
 			- phpstan.broker.methodsClassReflectionExtension
 
 	-
-		class: PHPStan\Mockery\Type\AllowsDynamicReturnTypeExtension
+		class: PHPStan\Mockery\Type\StubDynamicReturnTypeExtension
 		tags:
 			- phpstan.broker.dynamicMethodReturnTypeExtension
 
 	-
-		class: PHPStan\Mockery\Type\ExpectationAfterAllowsDynamicReturnTypeExtension
+		class: PHPStan\Mockery\Type\ExpectationAfterStubDynamicReturnTypeExtension
 		tags:
 			- phpstan.broker.dynamicMethodReturnTypeExtension
 
