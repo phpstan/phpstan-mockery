@@ -32,7 +32,7 @@ class ExpectationAfterStubDynamicReturnTypeExtension implements DynamicMethodRet
 
 	public function getTypeFromMethodCall(MethodReflection $methodReflection, MethodCall $methodCall, Scope $scope): Type
 	{
-		return new ObjectType('Mockery\\CompositeExpectation');
+		return new ObjectType('Mockery\\Expectation');
 	}
 
 }
