@@ -21,4 +21,17 @@ class MockeryBarTest extends \PHPUnit\Framework\TestCase
 		self::assertSame('foo', $bar->doFoo());
 	}
 
+	public function testExpectationMethodsAreCalled(): void
+	{
+		$bar = new Bar($this->fooMock);
+
+		$this->fooMock
+			->shouldReceive('doFoo')
+			->once()
+			->times(1)
+			->andReturn('foo');
+
+		self::assertSame('foo', $bar->doFoo());
+	}
+
 }
