@@ -10,7 +10,6 @@ use PHPStan\Type\DynamicMethodReturnTypeExtension;
 use PHPStan\Type\IntersectionType;
 use PHPStan\Type\ObjectType;
 use PHPStan\Type\Type;
-use PHPStan\Type\TypeCombinator;
 use PHPStan\Type\TypeWithClassName;
 
 class StubDynamicReturnTypeExtension implements DynamicMethodReturnTypeExtension
@@ -50,10 +49,7 @@ class StubDynamicReturnTypeExtension implements DynamicMethodReturnTypeExtension
 			return $defaultType;
 		}
 
-		return TypeCombinator::intersect(
-			new StubObjectType($mockedType->getClassName()),
-			new ObjectType($this->stubInterfaceName)
-		);
+		return new ObjectType($this->stubInterfaceName);
 	}
 
 }
