@@ -7,6 +7,11 @@ class Foo
 
 	public function doFoo(): ?string
 	{
+		if (rand(0, 1) === 0) {
+			return null;
+		}
+
+		return 'foo';
 	}
 
 }
