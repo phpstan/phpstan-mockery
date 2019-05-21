@@ -13,17 +13,24 @@ This extension provides the following features:
 * `Mockery::mock()` and `Mockery::spy()` return an intersection type (see the [detailed explanation of intersection types](https://medium.com/@ondrejmirtes/union-types-vs-intersection-types-fd44a8eacbb)) so that the returned object can be used as both the mock object and the mocked class object.
 * `shouldReceive()`, `allows()` and `expects()` methods can be called on the mock object and they work as expected.
 
-## Usage
+
+## Installation
 
 To use this extension, require it in [Composer](https://getcomposer.org/):
 
-```bash
+```
 composer require --dev phpstan/phpstan-mockery
 ```
 
-And include extension.neon in your project's PHPStan config:
+If you also install [phpstan/extension-installer](https://github.com/phpstan/extension-installer) then you're all set!
+
+<details>
+  <summary>Manual installation</summary>
+
+If you don't want to use `phpstan/extension-installer`, include extension.neon in your project's PHPStan config:
 
 ```
 includes:
-	- vendor/phpstan/phpstan-mockery/extension.neon
+    - vendor/phpstan/phpstan-mockery/extension.neon
 ```
+</details>
