@@ -46,7 +46,55 @@ class MockeryTest extends \PHPUnit\Framework\TestCase
 		self::assertSame('foo', $this->fooMock->doFoo());
 	}
 
+	public function testMockInterface(): void
+	{
+		$interfaceMock = \Mockery::mock(Baz::class, Buzz::class);
+		$this->requireBaz($interfaceMock);
+		$this->requireBuzz($interfaceMock);
+
+		$interfaceMock->shouldReceive('doFoo')->andReturn('bar');
+		self::assertSame('bar', $interfaceMock->doFoo());
+	}
+
+	public function testMockFooWithInterfaces(): void
+	{
+		$fooMock = \Mockery::mock(Foo::class, Baz::class . ', ' . Buzz::class);
+		$this->requireFoo($fooMock);
+		$this->requireBaz($fooMock);
+		$this->requireBuzz($fooMock);
+
+		$fooMock->shouldReceive('doFoo')->andReturn('bar');
+		self::assertSame('bar', $fooMock->doFoo());
+	}
+
+	public function testMockWithConstructorArgs(): void
+	{
+		$fooMock = \Mockery::mock(Foo::class, [true]);
+		$this->requireFoo($fooMock);
+
+		$fooMock->shouldReceive('doFoo')->andReturn('bar');
+		self::assertSame('bar', $fooMock->doFoo());
+	}
+
+	public function testMockWithInterfaceAndConstructorArgs(): void
+	{
+		$fooMock = \Mockery::mock(Foo::class, Buzz::class, [true]);
+		$this->requireFoo($fooMock);
+		$this->requireBuzz($fooMock);
+
+		$fooMock->shouldReceive('doFoo')->andReturn('bar');
+		self::assertSame('bar', $fooMock->doFoo());
+	}
+
 	private function requireFoo(Foo $foo): void
+	{
+	}
+
+	private function requireBaz(Baz $baz): void
+	{
+	}
+
+	private function requireBuzz(Buzz $buzz): void
 	{
 	}
 
