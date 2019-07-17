@@ -41,15 +41,36 @@ class MockDynamicReturnTypeExtension implements DynamicStaticMethodReturnTypeExt
 			return $defaultReturnType;
 		}
 
-		$classType = $scope->getType($methodCall->args[0]->value);
-		if (!$classType instanceof ConstantStringType) {
-			return $defaultReturnType;
+		$types = [$defaultReturnType];
+		foreach ($methodCall->args as $arg) {
+			$classType = $scope->getType($arg->value);
+			if (!$classType instanceof ConstantStringType) {
+				continue;
+			}
+
+			$value = $classType->getValue();
+			if (substr($value, 0, 6) === 'alias:') {
+				$value = substr($value, 6);
+			}
+			if (substr($value, 0, 9) === 'overload:') {
+				$value = substr($value, 9);
+			}
+			if (substr($value, -1) === ']' && strpos($value, '[') !== false) {
+				$value = substr($value, 0, strpos($value, '['));
+			}
+
+			if (strpos($value, ',') !== false) {
+				$interfaceNames = explode(',', str_replace(' ', '', $value));
+			} else {
+				$interfaceNames = [$value];
+			}
+
+			foreach ($interfaceNames as $name) {
+				$types[] = new ObjectType($name);
+			}
 		}
 
-		return TypeCombinator::intersect(
-			$defaultReturnType,
-			new ObjectType($classType->getValue())
-		);
+		return TypeCombinator::intersect(...$types);
 	}
 
 }

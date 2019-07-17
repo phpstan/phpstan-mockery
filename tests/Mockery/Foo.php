@@ -2,12 +2,20 @@
 
 namespace PHPStan\Mockery;
 
-class Foo
+class Foo implements Baz
 {
+
+	/** @var bool */
+	private $optional;
+
+	public function __construct(bool $optional = true)
+	{
+		$this->optional = $optional;
+	}
 
 	public function doFoo(): ?string
 	{
-		if (rand(0, 1) === 0) {
+		if ($this->optional) {
 			return null;
 		}
 
