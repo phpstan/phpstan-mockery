@@ -5,7 +5,6 @@ namespace PHPStan\Mockery\Type;
 use PhpParser\Node\Expr\StaticCall;
 use PHPStan\Analyser\Scope;
 use PHPStan\Reflection\MethodReflection;
-use PHPStan\Reflection\ParametersAcceptorSelector;
 use PHPStan\Type\Constant\ConstantStringType;
 use PHPStan\Type\DynamicStaticMethodReturnTypeExtension;
 use PHPStan\Type\ObjectType;
@@ -34,9 +33,7 @@ class MockDynamicReturnTypeExtension implements DynamicStaticMethodReturnTypeExt
 		Scope $scope
 	): Type
 	{
-		$defaultReturnType = ParametersAcceptorSelector::selectSingle(
-			$methodReflection->getVariants()
-		)->getReturnType();
+		$defaultReturnType = new ObjectType('Mockery\\MockInterface');
 		if (count($methodCall->args) === 0) {
 			return $defaultReturnType;
 		}
