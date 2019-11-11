@@ -25,7 +25,7 @@
 		"consistence/coding-standard": "^3.5",
 		"dealerdirect/phpcodesniffer-composer-installer": "^0.4.4",
 		"jakub-onderka/php-parallel-lint": "^1.0",
-		"mockery/mockery": "^1.1",
+		"mockery/mockery": "^1.2.4",
 		"phing/phing": "^2.16.0",
 		"phpstan/phpstan-strict-rules": "^0.12",
 		"phpstan/phpstan-phpunit": "^0.12",
