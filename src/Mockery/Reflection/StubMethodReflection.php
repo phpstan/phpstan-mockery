@@ -6,6 +6,7 @@ use PHPStan\Reflection\ClassMemberReflection;
 use PHPStan\Reflection\ClassReflection;
 use PHPStan\Reflection\MethodReflection;
 use PHPStan\Reflection\TrivialParametersAcceptor;
+use PHPStan\TrinaryLogic;
 
 class StubMethodReflection implements MethodReflection
 {
@@ -60,6 +61,44 @@ class StubMethodReflection implements MethodReflection
 		return [
 			new TrivialParametersAcceptor(),
 		];
+	}
+
+	/**
+	 * @return string|false
+	 */
+	public function getDocComment()
+	{
+		return false;
+	}
+
+	public function isDeprecated(): \PHPStan\TrinaryLogic
+	{
+		return TrinaryLogic::createNo();
+	}
+
+	public function getDeprecatedDescription(): ?string
+	{
+		return null;
+	}
+
+	public function isFinal(): \PHPStan\TrinaryLogic
+	{
+		return TrinaryLogic::createNo();
+	}
+
+	public function isInternal(): \PHPStan\TrinaryLogic
+	{
+		return TrinaryLogic::createNo();
+	}
+
+	public function getThrowType(): ?\PHPStan\Type\Type
+	{
+		return null;
+	}
+
+	public function hasSideEffects(): \PHPStan\TrinaryLogic
+	{
+		return TrinaryLogic::createNo();
 	}
 
 }
