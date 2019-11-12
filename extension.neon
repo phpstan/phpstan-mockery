@@ -1,3 +1,7 @@
+parameters:
+	stubFiles:
+		- stubs/MockInterface.php
+
 services:
 	-
 		class: PHPStan\Mockery\Reflection\StubMethodsClassReflectionExtension
@@ -52,11 +56,6 @@ services:
 		class: PHPStan\Mockery\Type\MockDynamicReturnTypeExtension
 		tags:
 			- phpstan.broker.dynamicStaticMethodReturnTypeExtension
-
-	-
-		class: PHPStan\Mockery\Type\ShouldReceiveDynamicReturnTypeExtension
-		tags:
-			- phpstan.broker.dynamicMethodReturnTypeExtension
 
 	-
 		class: PHPStan\Mockery\PhpDoc\TypeNodeResolverExtension
