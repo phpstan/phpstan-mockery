@@ -63,12 +63,9 @@ class StubMethodReflection implements MethodReflection
 		];
 	}
 
-	/**
-	 * @return string|false
-	 */
-	public function getDocComment()
+	public function getDocComment(): ?string
 	{
-		return false;
+		return null;
 	}
 
 	public function isDeprecated(): \PHPStan\TrinaryLogic
