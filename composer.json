@@ -24,6 +24,9 @@
 		"slevomat/coding-standard": "^4.7.2",
 		"squizlabs/php_codesniffer": "^3.3.2"
 	},
+	"config": {
+		"sort-packages": true
+	},
 	"extra": {
 		"branch-alias": {
 			"dev-master": "0.12-dev"
