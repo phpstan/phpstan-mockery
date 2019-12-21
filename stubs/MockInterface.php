@@ -33,3 +33,8 @@ interface LegacyMockInterface
 	public function makePartial();
 
 }
+
+class Expectation
+{
+
+}
