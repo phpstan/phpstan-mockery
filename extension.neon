@@ -1,6 +1,6 @@
 parameters:
 	stubFiles:
-		- stubs/MockInterface.php
+		- stubs/MockInterface.stub
 
 services:
 	-
