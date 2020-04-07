@@ -95,7 +95,7 @@ class StubMethodReflection implements MethodReflection
 
 	public function hasSideEffects(): \PHPStan\TrinaryLogic
 	{
-		return TrinaryLogic::createNo();
+		return TrinaryLogic::createMaybe();
 	}
 
 }
