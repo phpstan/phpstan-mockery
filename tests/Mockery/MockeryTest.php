@@ -95,6 +95,15 @@ class MockeryTest extends \PHPUnit\Framework\TestCase
 		self::assertSame('foo', $fooMock->doFoo());
 	}
 
+	public function testMockShouldAllowMockingProtectedMethods(): void
+	{
+		$fooMock = \Mockery::mock(Foo::class)->shouldAllowMockingProtectedMethods();
+		$this->requireFoo($fooMock);
+
+		$fooMock->shouldReceive('doFoo')->once()->andReturn('bar');
+		self::assertSame('bar', $fooMock->doFoo());
+	}
+
 	public function testMakePartial(): void
 	{
 		$fooMock = \Mockery::mock(Foo::class)->makePartial();
