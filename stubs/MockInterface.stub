@@ -32,6 +32,11 @@ interface LegacyMockInterface
 	 */
 	public function makePartial();
 
+    /**
+     * @return static
+     */
+    public function shouldAllowMockingProtectedMethods();
+
 }
 
 class Expectation
