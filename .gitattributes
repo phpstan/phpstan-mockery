@@ -1,1 +1,4 @@
 /tests export-ignore
+
+*.stub linguist-language=PHP
+*.neon linguist-language=YAML
