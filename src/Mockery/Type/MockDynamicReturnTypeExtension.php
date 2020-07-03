@@ -39,13 +39,8 @@ class MockDynamicReturnTypeExtension implements DynamicStaticMethodReturnTypeExt
 			return $defaultReturnType;
 		}
 
-		$args = $methodCall->args;
-		if ($methodReflection->getName() === 'namedMock') {
-			array_shift($args);
-		}
-
 		$types = [$defaultReturnType];
-		foreach ($args as $arg) {
+		foreach ($methodCall->args as $arg) {
 			$classType = $scope->getType($arg->value);
 			if (!$classType instanceof ConstantStringType) {
 				continue;
