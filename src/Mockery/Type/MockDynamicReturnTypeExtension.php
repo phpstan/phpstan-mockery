@@ -23,6 +23,7 @@ class MockDynamicReturnTypeExtension implements DynamicStaticMethodReturnTypeExt
 	{
 		return in_array($methodReflection->getName(), [
 			'mock',
+			'namedMock'
 			'spy',
 		], true);
 	}
