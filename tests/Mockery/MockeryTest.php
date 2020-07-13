@@ -115,7 +115,6 @@ class MockeryTest extends \PHPUnit\Framework\TestCase
 
 	public function testNamedMock(): void
 	{
-		// $fooMock = \Mockery::namedMock('FooBar');
 		$fooMock = \Mockery::namedMock('FooBar', Foo::class);
 		$this->requireFoo($fooMock);
 
