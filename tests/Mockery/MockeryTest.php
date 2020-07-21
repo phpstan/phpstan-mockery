@@ -113,6 +113,15 @@ class MockeryTest extends \PHPUnit\Framework\TestCase
 		self::assertSame('foo', $fooMock->doFoo());
 	}
 
+	public function testNamedMock(): void
+	{
+		$fooMock = \Mockery::namedMock('FooBar', Foo::class);
+		$this->requireFoo($fooMock);
+
+		$fooMock->allows()->doFoo()->andReturns('foo');
+		self::assertSame('foo', $fooMock->doFoo());
+	}
+
 	private function requireFoo(Foo $foo): void
 	{
 	}
