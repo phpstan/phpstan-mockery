@@ -1,6 +1,6 @@
 # PHPStan Mockery extension
 
-[![Build Status](https://travis-ci.com/phpstan/phpstan-mockery.svg?branch=master)](https://travis-ci.com/phpstan/phpstan-mockery)
+[![Build](https://github.com/phpstan/phpstan-mockery/workflows/Build/badge.svg)](https://github.com/phpstan/phpstan-mockery/actions)
 [![Latest Stable Version](https://poser.pugx.org/phpstan/phpstan-mockery/v/stable)](https://packagist.org/packages/phpstan/phpstan-mockery)
 [![License](https://poser.pugx.org/phpstan/phpstan-mockery/license)](https://packagist.org/packages/phpstan/phpstan-mockery)
 
