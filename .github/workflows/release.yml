@@ -16,14 +16,11 @@ jobs:
       - name: "Checkout"
         uses: "actions/checkout@v2"
 
-      - name: "Generate release changelog"
-        id: generate-release-changelog
-        uses: heinrichreimer/github-changelog-generator-action@v2.2
+      - name: Generate changelog
+        id: changelog
+        uses: metcalfc/changelog-generator@v0.4.4
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          onlyLastTag: "true"
-          stripHeaders: "true"
-          stripGeneratorNotice: "true"
+          myToken: ${{ secrets.GITHUB_TOKEN }}
 
       - name: "Create release"
         id: create-release
@@ -33,4 +30,4 @@ jobs:
         with:
           tag_name: ${{ github.ref }}
           release_name: ${{ github.ref }}
-          body: ${{ steps.generate-release-changelog.outputs.changelog }}
+          body: ${{ steps.changelog.outputs.changelog }}
