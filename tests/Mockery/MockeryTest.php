@@ -38,6 +38,13 @@ class MockeryTest extends \PHPUnit\Framework\TestCase
 		self::assertSame('bar', $fooMock->doFoo());
 	}
 
+	public function testAlternativeMockTest(): void
+	{
+		$fooMock = \Mockery::mock(Foo::class);
+		$fooMock->shouldReceive(['doFoo' => 'bar']);
+		self::assertSame('bar', $fooMock->doFoo());
+	}
+
 	public function testMockFromProperty(): void
 	{
 		$this->requireFoo($this->fooMock);
