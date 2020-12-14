@@ -6,7 +6,7 @@ interface MockInterface
 {
 
 	/**
-	 * @param string[] ...$methodNames
+	 * @param string|array<string, mixed> ...$methodNames
 	 * @return Expectation
 	 */
 	public function shouldReceive(...$methodNames);
@@ -22,7 +22,7 @@ interface LegacyMockInterface
 {
 
 	/**
-	 * @param string[] ...$methodNames
+	 * @param string|array<string, mixed> ...$methodNames
 	 * @return Expectation
 	 */
 	public function shouldReceive(...$methodNames);
