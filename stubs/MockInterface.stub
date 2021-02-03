@@ -12,6 +12,12 @@ interface MockInterface
 	public function shouldReceive(...$methodNames);
 
 	/**
+	 * @param string|array<string, mixed> ...$methodNames
+	 * @return Expectation
+	 */
+	public function shouldNotReceive(...$methodNames);
+
+	/**
 	 * @return static
 	 */
 	public function makePartial();
@@ -26,6 +32,12 @@ interface LegacyMockInterface
 	 * @return Expectation
 	 */
 	public function shouldReceive(...$methodNames);
+
+	/**
+	 * @param string|array<string, mixed> ...$methodNames
+	 * @return Expectation
+	 */
+	public function shouldNotReceive(...$methodNames);
 
 	/**
 	 * @return static

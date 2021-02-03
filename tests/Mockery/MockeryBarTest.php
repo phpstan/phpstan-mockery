@@ -2,7 +2,9 @@
 
 namespace PHPStan\Mockery;
 
-class MockeryBarTest extends \PHPUnit\Framework\TestCase
+use Mockery\Adapter\Phpunit\MockeryTestCase;
+
+class MockeryBarTest extends MockeryTestCase
 {
 
 	/** @var \Mockery\MockInterface|Foo */
@@ -10,6 +12,8 @@ class MockeryBarTest extends \PHPUnit\Framework\TestCase
 
 	protected function setUp(): void
 	{
+		parent::setUp();
+
 		$this->fooMock = \Mockery::mock(Foo::class);
 	}
 
@@ -32,6 +36,19 @@ class MockeryBarTest extends \PHPUnit\Framework\TestCase
 			->andReturn('foo');
 
 		self::assertSame('foo', $bar->doFoo());
+	}
+
+	public function testShouldNotReceiveAndHaveReceived(): void
+	{
+		$this->fooMock->shouldNotReceive('doFoo')->andReturn('bar');
+		$this->fooMock->shouldNotHaveReceived('doFoo');
+	}
+
+	public function testShouldReceiveAndHaveReceived(): void
+	{
+		$this->fooMock->shouldReceive('doFoo')->andReturn('bar');
+		self::assertSame('bar', $this->fooMock->doFoo());
+		$this->fooMock->shouldHaveReceived('doFoo');
 	}
 
 }
