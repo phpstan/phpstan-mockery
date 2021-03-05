@@ -1,6 +1,13 @@
 parameters:
+	mockery:
+		convertUnionToIntersectionType: true
 	stubFiles:
 		- stubs/MockInterface.stub
+
+parametersSchema:
+	mockery: structure([
+		convertUnionToIntersectionType: bool()
+	])
 
 services:
 	-
@@ -59,5 +66,7 @@ services:
 
 	-
 		class: PHPStan\Mockery\PhpDoc\TypeNodeResolverExtension
-		tags:
-			- phpstan.phpDoc.typeNodeResolverExtension
+
+conditionalTags:
+	PHPStan\Mockery\PhpDoc\TypeNodeResolverExtension:
+		phpstan.phpDoc.typeNodeResolverExtension: %mockery.convertUnionToIntersectionType%
