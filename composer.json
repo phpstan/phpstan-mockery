@@ -11,7 +11,6 @@
     },
     "require-dev": {
         "mockery/mockery": "^1.2.4",
-        "phing/phing": "^2.16.3",
         "php-parallel-lint/php-parallel-lint": "^1.2",
         "phpstan/phpstan-phpunit": "^0.12.16",
         "phpstan/phpstan-strict-rules": "^0.12.5",
