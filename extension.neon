@@ -41,20 +41,6 @@ services:
 			stubMethodName: expects
 
 	-
-		class: PHPStan\Mockery\Type\ExpectationAfterStubDynamicReturnTypeExtension
-		tags:
-			- phpstan.broker.dynamicMethodReturnTypeExtension
-		arguments:
-			stubInterfaceName: PHPStan\Mockery\Type\Allows
-
-	-
-		class: PHPStan\Mockery\Type\ExpectationAfterStubDynamicReturnTypeExtension
-		tags:
-			- phpstan.broker.dynamicMethodReturnTypeExtension
-		arguments:
-			stubInterfaceName: PHPStan\Mockery\Type\Expects
-
-	-
 		class: PHPStan\Mockery\Type\MockDynamicReturnTypeExtension
 		tags:
 			- phpstan.broker.dynamicStaticMethodReturnTypeExtension

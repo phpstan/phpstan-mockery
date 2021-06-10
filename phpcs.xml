@@ -56,11 +56,6 @@
 	<!-- <rule ref="SlevomatCodingStandard.ControlStructures.DisallowShortTernaryOperator"/>-->
 	<!-- <rule ref="SlevomatCodingStandard.Namespaces.RequireOneNamespaceInFile"/> -->
 	<!-- <rule ref="SlevomatCodingStandard.PHP.ShortList"/> -->
-	<rule ref="SlevomatCodingStandard.Files.TypeNameMatchesFileName">
-		<properties>
-			<property name="rootNamespaces" type="array" value="src=>PHPStan,tests=>PHPStan"/>
-		</properties>
-	</rule>
 	<exclude-pattern>tests/*/data</exclude-pattern>
 	<exclude-pattern>tests/tmp</exclude-pattern>
 </ruleset>

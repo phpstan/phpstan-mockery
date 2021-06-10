@@ -4,9 +4,11 @@ namespace PHPStan\Mockery\Reflection;
 
 use PHPStan\Reflection\ClassMemberReflection;
 use PHPStan\Reflection\ClassReflection;
+use PHPStan\Reflection\FunctionVariant;
 use PHPStan\Reflection\MethodReflection;
-use PHPStan\Reflection\TrivialParametersAcceptor;
 use PHPStan\TrinaryLogic;
+use PHPStan\Type\Generic\TemplateTypeMap;
+use PHPStan\Type\ObjectType;
 
 class StubMethodReflection implements MethodReflection
 {
@@ -59,7 +61,13 @@ class StubMethodReflection implements MethodReflection
 	public function getVariants(): array
 	{
 		return [
-			new TrivialParametersAcceptor(),
+			new FunctionVariant(
+				TemplateTypeMap::createEmpty(),
+				TemplateTypeMap::createEmpty(),
+				[],
+				true,
+				new ObjectType('Mockery\\Expectation')
+			),
 		];
 	}
 

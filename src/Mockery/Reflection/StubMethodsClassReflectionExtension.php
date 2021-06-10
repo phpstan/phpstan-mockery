@@ -2,18 +2,24 @@
 
 namespace PHPStan\Mockery\Reflection;
 
+use Mockery\Expectation;
 use PHPStan\Reflection\ClassReflection;
 use PHPStan\Reflection\MethodReflection;
 use PHPStan\Reflection\MethodsClassReflectionExtension;
+use PHPStan\Reflection\ReflectionProvider;
 
 class StubMethodsClassReflectionExtension implements MethodsClassReflectionExtension
 {
 
+	/** @var ReflectionProvider */
+	private $reflectionProvider;
+
 	/** @var string */
 	private $stubInterfaceName;
 
-	public function __construct(string $stubInterfaceName)
+	public function __construct(ReflectionProvider $reflectionProvider, string $stubInterfaceName)
 	{
+		$this->reflectionProvider = $reflectionProvider;
 		$this->stubInterfaceName = $stubInterfaceName;
 	}
 
@@ -24,6 +30,9 @@ class StubMethodsClassReflectionExtension implements MethodsClassReflectionExten
 
 	public function getMethod(ClassReflection $classReflection, string $methodName): MethodReflection
 	{
+		if ($this->reflectionProvider->hasClass(Expectation::class)) {
+			$classReflection = $this->reflectionProvider->getClass(Expectation::class);
+		}
 		return new StubMethodReflection($classReflection, $methodName);
 	}
 
