@@ -32,7 +32,7 @@ class MockDynamicNamedMockReturnTypeExtension implements DynamicStaticMethodRetu
 	{
 		$defaultReturnType = new ObjectType('Mockery\\MockInterface');
 
-		$args = $methodCall->args;
+		$args = $methodCall->getArgs();
 		if (count($args) > 1) {
 			array_shift($args);
 		}

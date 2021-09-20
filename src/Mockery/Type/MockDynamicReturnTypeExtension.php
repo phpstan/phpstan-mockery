@@ -34,12 +34,12 @@ class MockDynamicReturnTypeExtension implements DynamicStaticMethodReturnTypeExt
 	): Type
 	{
 		$defaultReturnType = new ObjectType('Mockery\\MockInterface');
-		if (count($methodCall->args) === 0) {
+		if (count($methodCall->getArgs()) === 0) {
 			return $defaultReturnType;
 		}
 
 		$types = [$defaultReturnType];
-		foreach ($methodCall->args as $arg) {
+		foreach ($methodCall->getArgs() as $arg) {
 			$classType = $scope->getType($arg->value);
 			if (!$classType instanceof ConstantStringType) {
 				continue;
