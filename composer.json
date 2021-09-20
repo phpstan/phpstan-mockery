@@ -11,6 +11,7 @@
     },
     "require-dev": {
         "mockery/mockery": "^1.2.4",
+        "nikic/php-parser": "^4.13.0",
         "php-parallel-lint/php-parallel-lint": "^1.2",
         "phpstan/phpstan-phpunit": "^1.0",
         "phpstan/phpstan-strict-rules": "^1.0",
