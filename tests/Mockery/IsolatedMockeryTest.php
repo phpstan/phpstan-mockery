@@ -2,16 +2,13 @@
 
 namespace PHPStan\Mockery;
 
-/**
- * @runTestsInSeparateProcesses
- */
 class IsolatedMockeryTest extends \PHPUnit\Framework\TestCase
 {
 
 	public function testAliasMock(): void
 	{
-		$fooMock = \Mockery::mock('alias:' . Foo::class);
-		$this->requireFoo($fooMock);
+		$fooMock = \Mockery::mock('alias:' . Foo2::class);
+		$this->requireFoo2($fooMock);
 
 		$fooMock->shouldReceive('doFoo')->andReturn('bar');
 		self::assertSame('bar', $fooMock->doFoo());
@@ -19,14 +16,18 @@ class IsolatedMockeryTest extends \PHPUnit\Framework\TestCase
 
 	public function testOverloadMock(): void
 	{
-		$fooMock = \Mockery::mock('overload:' . Foo::class);
-		$this->requireFoo($fooMock);
+		$fooMock = \Mockery::mock('overload:' . Foo3::class);
+		$this->requireFoo3($fooMock);
 
 		$fooMock->shouldReceive('doFoo')->andReturn('bar');
 		self::assertSame('bar', $fooMock->doFoo());
 	}
 
-	private function requireFoo(Foo $foo): void
+	private function requireFoo2(Foo2 $foo): void
+	{
+	}
+
+	private function requireFoo3(Foo3 $foo): void
 	{
 	}
 
