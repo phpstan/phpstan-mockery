@@ -1,7 +1,9 @@
 <?php declare(strict_types = 1);
 
-namespace App;
+namespace PHPStan\Mockery;
 
+use App\DifferentFoo;
+use Mockery;
 use Mockery\Adapter\Phpunit\MockeryTestCase;
 use Mockery\MockInterface;
 
@@ -15,7 +17,7 @@ class DifferentNamespaceTest extends MockeryTestCase
 	{
 		parent::setUp();
 
-		$this->fooMock = \Mockery::mock(DifferentFoo::class);
+		$this->fooMock = Mockery::mock(DifferentFoo::class);
 	}
 
 	public function testWith(): void

@@ -4,12 +4,15 @@ namespace PHPStan\Mockery\PhpDoc;
 
 use PHPStan\Analyser\NameScope;
 use PHPStan\PhpDoc\TypeNodeResolver;
+use PHPStan\PhpDoc\TypeNodeResolverAwareExtension;
 use PHPStan\PhpDocParser\Ast\Type\TypeNode;
 use PHPStan\PhpDocParser\Ast\Type\UnionTypeNode;
 use PHPStan\Type\Type;
+use PHPStan\Type\TypeCombinator;
 use PHPStan\Type\TypeWithClassName;
+use function count;
 
-class TypeNodeResolverExtension implements \PHPStan\PhpDoc\TypeNodeResolverExtension, \PHPStan\PhpDoc\TypeNodeResolverAwareExtension
+class TypeNodeResolverExtension implements \PHPStan\PhpDoc\TypeNodeResolverExtension, TypeNodeResolverAwareExtension
 {
 
 	/** @var TypeNodeResolver */
@@ -41,7 +44,7 @@ class TypeNodeResolverExtension implements \PHPStan\PhpDoc\TypeNodeResolverExten
 				count($types) === 2
 				&& $type->getClassName() === 'Mockery\\MockInterface'
 			) {
-				return \PHPStan\Type\TypeCombinator::intersect(...$types);
+				return TypeCombinator::intersect(...$types);
 			}
 		}
 

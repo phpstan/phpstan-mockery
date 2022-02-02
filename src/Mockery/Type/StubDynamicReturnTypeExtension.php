@@ -11,6 +11,7 @@ use PHPStan\Type\IntersectionType;
 use PHPStan\Type\ObjectType;
 use PHPStan\Type\Type;
 use PHPStan\Type\TypeWithClassName;
+use function count;
 
 class StubDynamicReturnTypeExtension implements DynamicMethodReturnTypeExtension
 {

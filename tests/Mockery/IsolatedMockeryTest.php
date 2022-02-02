@@ -2,12 +2,15 @@
 
 namespace PHPStan\Mockery;
 
-class IsolatedMockeryTest extends \PHPUnit\Framework\TestCase
+use Mockery;
+use PHPUnit\Framework\TestCase;
+
+class IsolatedMockeryTest extends TestCase
 {
 
 	public function testAliasMock(): void
 	{
-		$fooMock = \Mockery::mock('alias:' . Foo2::class);
+		$fooMock = Mockery::mock('alias:' . Foo2::class);
 		$this->requireFoo2($fooMock);
 
 		$fooMock->shouldReceive('doFoo')->andReturn('bar');
@@ -16,7 +19,7 @@ class IsolatedMockeryTest extends \PHPUnit\Framework\TestCase
 
 	public function testOverloadMock(): void
 	{
-		$fooMock = \Mockery::mock('overload:' . Foo3::class);
+		$fooMock = Mockery::mock('overload:' . Foo3::class);
 		$this->requireFoo3($fooMock);
 
 		$fooMock->shouldReceive('doFoo')->andReturn('bar');

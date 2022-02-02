@@ -2,19 +2,21 @@
 
 namespace PHPStan\Mockery;
 
+use Mockery;
 use Mockery\Adapter\Phpunit\MockeryTestCase;
+use Mockery\MockInterface;
 
 class MockeryBarTest extends MockeryTestCase
 {
 
-	/** @var \Mockery\MockInterface|Foo */
+	/** @var MockInterface|Foo */
 	private $fooMock;
 
 	protected function setUp(): void
 	{
 		parent::setUp();
 
-		$this->fooMock = \Mockery::mock(Foo::class);
+		$this->fooMock = Mockery::mock(Foo::class);
 	}
 
 	public function testFooIsCalled(): void

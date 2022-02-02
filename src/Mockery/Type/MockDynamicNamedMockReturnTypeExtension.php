@@ -10,6 +10,12 @@ use PHPStan\Type\DynamicStaticMethodReturnTypeExtension;
 use PHPStan\Type\ObjectType;
 use PHPStan\Type\Type;
 use PHPStan\Type\TypeCombinator;
+use function array_shift;
+use function count;
+use function explode;
+use function str_replace;
+use function strpos;
+use function substr;
 
 class MockDynamicNamedMockReturnTypeExtension implements DynamicStaticMethodReturnTypeExtension
 {

@@ -2,20 +2,24 @@
 
 namespace PHPStan\Mockery;
 
-class MockeryTest extends \PHPUnit\Framework\TestCase
+use Mockery;
+use Mockery\MockInterface;
+use PHPUnit\Framework\TestCase;
+
+class MockeryTest extends TestCase
 {
 
-	/** @var \Mockery\MockInterface|Foo */
+	/** @var MockInterface|Foo */
 	private $fooMock;
 
 	protected function setUp(): void
 	{
-		$this->fooMock = \Mockery::mock(Foo::class);
+		$this->fooMock = Mockery::mock(Foo::class);
 	}
 
 	public function testCreatedMock(): void
 	{
-		$fooMock = \Mockery::mock(Foo::class);
+		$fooMock = Mockery::mock(Foo::class);
 		$this->requireFoo($fooMock);
 
 		$fooMock->allows()->doFoo()->andReturns('foo');
@@ -24,7 +28,7 @@ class MockeryTest extends \PHPUnit\Framework\TestCase
 
 	public function testExpectsMock(): void
 	{
-		$fooMock = \Mockery::mock(Foo::class);
+		$fooMock = Mockery::mock(Foo::class);
 		$this->requireFoo($fooMock);
 
 		$fooMock->expects()->doFoo()->andReturns('foo');
@@ -33,14 +37,14 @@ class MockeryTest extends \PHPUnit\Framework\TestCase
 
 	public function testAnotherMockTest(): void
 	{
-		$fooMock = \Mockery::mock(Foo::class);
+		$fooMock = Mockery::mock(Foo::class);
 		$fooMock->shouldReceive('doFoo')->andReturn('bar');
 		self::assertSame('bar', $fooMock->doFoo());
 	}
 
 	public function testAlternativeMockTest(): void
 	{
-		$fooMock = \Mockery::mock(Foo::class);
+		$fooMock = Mockery::mock(Foo::class);
 		$fooMock->shouldReceive(['doFoo' => 'bar']);
 		self::assertSame('bar', $fooMock->doFoo());
 	}
@@ -55,7 +59,7 @@ class MockeryTest extends \PHPUnit\Framework\TestCase
 
 	public function testMockInterface(): void
 	{
-		$interfaceMock = \Mockery::mock(Baz::class, Buzz::class);
+		$interfaceMock = Mockery::mock(Baz::class, Buzz::class);
 		$this->requireBaz($interfaceMock);
 		$this->requireBuzz($interfaceMock);
 
@@ -65,7 +69,7 @@ class MockeryTest extends \PHPUnit\Framework\TestCase
 
 	public function testMockFooWithInterfaces(): void
 	{
-		$fooMock = \Mockery::mock(Foo::class, Baz::class . ', ' . Buzz::class);
+		$fooMock = Mockery::mock(Foo::class, Baz::class . ', ' . Buzz::class);
 		$this->requireFoo($fooMock);
 		$this->requireBaz($fooMock);
 		$this->requireBuzz($fooMock);
@@ -76,7 +80,7 @@ class MockeryTest extends \PHPUnit\Framework\TestCase
 
 	public function testMockWithConstructorArgs(): void
 	{
-		$fooMock = \Mockery::mock(Foo::class, [true]);
+		$fooMock = Mockery::mock(Foo::class, [true]);
 		$this->requireFoo($fooMock);
 
 		$fooMock->shouldReceive('doFoo')->andReturn('bar');
@@ -85,7 +89,7 @@ class MockeryTest extends \PHPUnit\Framework\TestCase
 
 	public function testMockWithInterfaceAndConstructorArgs(): void
 	{
-		$fooMock = \Mockery::mock(Foo::class, Buzz::class, [true]);
+		$fooMock = Mockery::mock(Foo::class, Buzz::class, [true]);
 		$this->requireFoo($fooMock);
 		$this->requireBuzz($fooMock);
 
@@ -95,7 +99,7 @@ class MockeryTest extends \PHPUnit\Framework\TestCase
 
 	public function testMockWithMethods(): void
 	{
-		$fooMock = \Mockery::mock(Foo::class . '[doFoo]');
+		$fooMock = Mockery::mock(Foo::class . '[doFoo]');
 		$this->requireFoo($fooMock);
 
 		$fooMock->allows()->doFoo()->andReturns('foo');
@@ -104,7 +108,7 @@ class MockeryTest extends \PHPUnit\Framework\TestCase
 
 	public function testMockShouldAllowMockingProtectedMethods(): void
 	{
-		$fooMock = \Mockery::mock(Foo::class)->shouldAllowMockingProtectedMethods();
+		$fooMock = Mockery::mock(Foo::class)->shouldAllowMockingProtectedMethods();
 		$this->requireFoo($fooMock);
 
 		$fooMock->shouldReceive('doFoo')->once()->andReturn('bar');
@@ -113,7 +117,7 @@ class MockeryTest extends \PHPUnit\Framework\TestCase
 
 	public function testMakePartial(): void
 	{
-		$fooMock = \Mockery::mock(Foo::class)->makePartial();
+		$fooMock = Mockery::mock(Foo::class)->makePartial();
 		$this->requireFoo($fooMock);
 
 		$fooMock->allows()->doFoo()->andReturns('foo');
@@ -122,7 +126,7 @@ class MockeryTest extends \PHPUnit\Framework\TestCase
 
 	public function testNamedMock(): void
 	{
-		$fooMock = \Mockery::namedMock('FooBar', Foo::class);
+		$fooMock = Mockery::namedMock('FooBar', Foo::class);
 		$this->requireFoo($fooMock);
 
 		$fooMock->allows()->doFoo()->andReturns('foo');
