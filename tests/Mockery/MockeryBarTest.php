@@ -40,17 +40,27 @@ class MockeryBarTest extends MockeryTestCase
 		self::assertSame('foo', $bar->doFoo());
 	}
 
-	public function testShouldNotReceiveAndHaveReceived(): void
+	public function testShouldNotReceive(): void
 	{
 		$this->fooMock->shouldNotReceive('doFoo')->andReturn('bar');
-		$this->fooMock->shouldNotHaveReceived('doFoo');
 	}
 
-	public function testShouldReceiveAndHaveReceived(): void
+	public function testShouldReceive(): void
 	{
 		$this->fooMock->shouldReceive('doFoo')->andReturn('bar');
 		self::assertSame('bar', $this->fooMock->doFoo());
-		$this->fooMock->shouldHaveReceived('doFoo');
+	}
+
+	public function testShouldNotHaveReceived(): void
+	{
+		$this->fooMock->shouldNotHaveReceived(null)->withArgs(['bar']);
+	}
+
+	public function testShouldHaveReceived(): void
+	{
+		$this->fooMock->allows('doFoo')->andReturn('bar');
+		self::assertSame('bar', $this->fooMock->doFoo());
+		$this->fooMock->shouldHaveReceived('doFoo')->once();
 	}
 
 }
