@@ -39,6 +39,20 @@ interface LegacyMockInterface
 	 */
 	public function shouldNotReceive(...$methodNames);
 
+    /**
+     * @param null|string $method
+     * @param null|array<string> $args
+     * @return Expectation
+     */
+    public function shouldHaveReceived($method, $args = null);
+
+    /**
+     * @param null|string $method
+     * @param null|array<string> $args
+     * @return Expectation
+     */
+    public function shouldNotHaveReceived($method, $args = null);
+
 	/**
 	 * @return static
 	 */
