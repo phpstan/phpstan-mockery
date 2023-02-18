@@ -5,7 +5,6 @@ namespace PHPStan\Mockery\Type;
 use PhpParser\Node\Expr\StaticCall;
 use PHPStan\Analyser\Scope;
 use PHPStan\Reflection\MethodReflection;
-use PHPStan\Type\Constant\ConstantStringType;
 use PHPStan\Type\DynamicStaticMethodReturnTypeExtension;
 use PHPStan\Type\ObjectType;
 use PHPStan\Type\Type;
@@ -46,11 +45,12 @@ class MockDynamicNamedMockReturnTypeExtension implements DynamicStaticMethodRetu
 		$types = [$defaultReturnType];
 		foreach ($args as $arg) {
 			$classType = $scope->getType($arg->value);
-			if (!$classType instanceof ConstantStringType) {
+			$constantStrings = $classType->getConstantStrings();
+			if (count($constantStrings) !== 1) {
 				continue;
 			}
 
-			$value = $classType->getValue();
+			$value = $constantStrings[0]->getValue();
 			if (substr($value, 0, 6) === 'alias:') {
 				$value = substr($value, 6);
 			}

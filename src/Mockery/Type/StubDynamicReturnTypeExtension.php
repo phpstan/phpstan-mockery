@@ -5,12 +5,11 @@ namespace PHPStan\Mockery\Type;
 use PhpParser\Node\Expr\MethodCall;
 use PHPStan\Analyser\Scope;
 use PHPStan\Reflection\MethodReflection;
-use PHPStan\Reflection\ParametersAcceptorSelector;
 use PHPStan\Type\DynamicMethodReturnTypeExtension;
-use PHPStan\Type\IntersectionType;
 use PHPStan\Type\ObjectType;
 use PHPStan\Type\Type;
-use PHPStan\Type\TypeWithClassName;
+use function array_filter;
+use function array_values;
 use function count;
 
 class StubDynamicReturnTypeExtension implements DynamicMethodReturnTypeExtension
@@ -38,16 +37,14 @@ class StubDynamicReturnTypeExtension implements DynamicMethodReturnTypeExtension
 		return $methodReflection->getName() === $this->stubMethodName;
 	}
 
-	public function getTypeFromMethodCall(MethodReflection $methodReflection, MethodCall $methodCall, Scope $scope): Type
+	public function getTypeFromMethodCall(MethodReflection $methodReflection, MethodCall $methodCall, Scope $scope): ?Type
 	{
-		$calledOnType = $scope->getType($methodCall->var);
-		$defaultType = ParametersAcceptorSelector::selectSingle($methodReflection->getVariants())->getReturnType();
-		if (!$calledOnType instanceof IntersectionType || count($calledOnType->getTypes()) !== 2) {
-			return $defaultType;
-		}
-		$mockedType = $calledOnType->getTypes()[1];
-		if (!$mockedType instanceof TypeWithClassName) {
-			return $defaultType;
+		$calledOnType = $scope->getType($methodCall->var)->getObjectClassNames();
+		$names = array_values(array_filter($calledOnType, static function (string $name) {
+			return $name !== 'Mockery\\MockInterface';
+		}));
+		if (count($names) !== 1) {
+			return null;
 		}
 
 		return new ObjectType($this->stubInterfaceName);

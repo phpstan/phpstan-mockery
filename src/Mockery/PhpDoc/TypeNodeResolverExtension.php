@@ -9,7 +9,6 @@ use PHPStan\PhpDocParser\Ast\Type\TypeNode;
 use PHPStan\PhpDocParser\Ast\Type\UnionTypeNode;
 use PHPStan\Type\Type;
 use PHPStan\Type\TypeCombinator;
-use PHPStan\Type\TypeWithClassName;
 use function count;
 
 class TypeNodeResolverExtension implements \PHPStan\PhpDoc\TypeNodeResolverExtension, TypeNodeResolverAwareExtension
@@ -36,13 +35,14 @@ class TypeNodeResolverExtension implements \PHPStan\PhpDoc\TypeNodeResolverExten
 
 		$types = $this->typeNodeResolver->resolveMultiple($typeNode->types, $nameScope);
 		foreach ($types as $type) {
-			if (!$type instanceof TypeWithClassName) {
+			$classNames = $type->getObjectClassNames();
+			if (count($classNames) !== 1) {
 				continue;
 			}
 
 			if (
 				count($types) === 2
-				&& $type->getClassName() === 'Mockery\\MockInterface'
+				&& $classNames[0] === 'Mockery\\MockInterface'
 			) {
 				return TypeCombinator::intersect(...$types);
 			}
