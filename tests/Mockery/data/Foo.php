@@ -22,4 +22,7 @@ class Foo implements Baz
 		return 'foo';
 	}
 
+	public function doBar(string $arg): void
+	{
+	}
 }
