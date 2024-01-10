@@ -9,14 +9,18 @@ use Mockery\MockInterface;
 class MockeryBarTest extends MockeryTestCase
 {
 
-	/** @var MockInterface|Foo */
+	/** @var MockInterface&Foo */
 	private $fooMock;
+
+	/** @var MockInterface&Foo */
+	private $fooSpy;
 
 	protected function setUp(): void
 	{
 		parent::setUp();
 
 		$this->fooMock = Mockery::mock(Foo::class);
+		$this->fooSpy = Mockery::spy(Foo::class);
 	}
 
 	public function testFooIsCalled(): void
@@ -53,14 +57,24 @@ class MockeryBarTest extends MockeryTestCase
 
 	public function testShouldNotHaveReceived(): void
 	{
-		$this->fooMock->shouldNotHaveReceived(null)->withArgs(['bar']);
+		$this->fooSpy->shouldNotHaveReceived(null)->withArgs(['bar']);
+		$this->fooSpy->doBar('ccc');
+		$this->fooSpy->shouldNotHaveReceived('doBar', ['ddd']);
+		$this->fooSpy->shouldNotHaveReceived('doBar', static function (string $arg): bool {
+			return $arg !== 'ccc';
+		});
 	}
 
 	public function testShouldHaveReceived(): void
 	{
-		$this->fooMock->allows('doFoo')->andReturn('bar');
-		self::assertSame('bar', $this->fooMock->doFoo());
-		$this->fooMock->shouldHaveReceived('doFoo')->once();
+		$this->fooSpy->allows('doFoo')->andReturn('bar');
+		self::assertSame('bar', $this->fooSpy->doFoo());
+		$this->fooSpy->shouldHaveReceived('doFoo')->once();
+		$this->fooSpy->doBar('ccc');
+		$this->fooSpy->shouldHaveReceived('doBar', ['ccc']);
+		$this->fooSpy->shouldHaveReceived('doBar', static function (string $arg): bool {
+			return $arg === 'ccc';
+		});
 	}
 
 }
