@@ -1,21 +1,11 @@
 parameters:
 	ignoreErrors:
 		-
-			message: "#^Parameter \\#1 \\.\\.\\.\\$args of static method Mockery\\:\\:namedMock\\(\\) expects class\\-string\\<FooBar\\|PHPStan\\\\Mockery\\\\Foo\\>\\|FooBar\\|PHPStan\\\\Mockery\\\\Foo, string given\\.$#"
+			message: "#^Parameter \\#1 \\.\\.\\.\\$args of static method Mockery\\:\\:namedMock\\(\\) expects array\\|class\\-string\\<FooBar\\|PHPStan\\\\Mockery\\\\Foo\\>\\|FooBar\\|PHPStan\\\\Mockery\\\\Foo, string given\\.$#"
 			count: 1
 			path: tests/Mockery/MockeryTest.php
 
 		-
-			message: "#^Parameter \\#2 \\.\\.\\.\\$args of static method Mockery\\:\\:mock\\(\\) expects class\\-string\\<PHPStan\\\\Mockery\\\\Baz, PHPStan\\\\Mockery\\\\Buzz\\|PHPStan\\\\Mockery\\\\Foo\\>\\|PHPStan\\\\Mockery\\\\Baz, PHPStan\\\\Mockery\\\\Buzz\\|PHPStan\\\\Mockery\\\\Foo, string given\\.$#"
-			count: 1
-			path: tests/Mockery/MockeryTest.php
-
-		-
-			message: "#^Parameter \\#2 \\.\\.\\.\\$args of static method Mockery\\:\\:mock\\(\\) expects class\\-string\\<PHPStan\\\\Mockery\\\\Foo\\>\\|PHPStan\\\\Mockery\\\\Foo, array\\<int, true\\> given\\.$#"
-			count: 1
-			path: tests/Mockery/MockeryTest.php
-
-		-
-			message: "#^Parameter \\#3 \\.\\.\\.\\$args of static method Mockery\\:\\:mock\\(\\) expects class\\-string\\<PHPStan\\\\Mockery\\\\Buzz\\|PHPStan\\\\Mockery\\\\Foo\\>\\|PHPStan\\\\Mockery\\\\Buzz\\|PHPStan\\\\Mockery\\\\Foo, array\\<int, true\\> given\\.$#"
+			message: "#^Parameter \\#2 \\.\\.\\.\\$args of static method Mockery\\:\\:mock\\(\\) expects array\\|class\\-string\\<PHPStan\\\\Mockery\\\\Baz, PHPStan\\\\Mockery\\\\Buzz\\|PHPStan\\\\Mockery\\\\Foo\\>\\|PHPStan\\\\Mockery\\\\Baz, PHPStan\\\\Mockery\\\\Buzz\\|PHPStan\\\\Mockery\\\\Foo, string given\\.$#"
 			count: 1
 			path: tests/Mockery/MockeryTest.php
