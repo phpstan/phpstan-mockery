@@ -3,9 +3,11 @@ parameters:
 		-
 			message: "#^Parameter \\#1 \\.\\.\\.\\$args of static method Mockery\\:\\:namedMock\\(\\) expects array\\|class\\-string\\<FooBar\\|PHPStan\\\\Mockery\\\\Foo\\>\\|FooBar\\|PHPStan\\\\Mockery\\\\Foo, string given\\.$#"
 			count: 1
+			reportUnmatched: false
 			path: tests/Mockery/MockeryTest.php
 
 		-
 			message: "#^Parameter \\#2 \\.\\.\\.\\$args of static method Mockery\\:\\:mock\\(\\) expects array\\|class\\-string\\<PHPStan\\\\Mockery\\\\Baz, PHPStan\\\\Mockery\\\\Buzz\\|PHPStan\\\\Mockery\\\\Foo\\>\\|PHPStan\\\\Mockery\\\\Baz, PHPStan\\\\Mockery\\\\Buzz\\|PHPStan\\\\Mockery\\\\Foo, string given\\.$#"
 			count: 1
+			reportUnmatched: false
 			path: tests/Mockery/MockeryTest.php
