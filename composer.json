@@ -10,7 +10,7 @@
         "phpstan/phpstan": "^1.10"
     },
     "require-dev": {
-        "mockery/mockery": "^1.6.10",
+        "mockery/mockery": "^1.6.11",
         "nikic/php-parser": "^4.13.0",
         "php-parallel-lint/php-parallel-lint": "^1.2",
         "phpstan/phpstan-phpunit": "^1.0",
