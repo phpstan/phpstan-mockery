@@ -5,6 +5,7 @@ namespace PHPStan\Mockery;
 use Mockery;
 use Mockery\MockInterface;
 use PHPUnit\Framework\TestCase;
+use function usleep;
 
 class MockeryTest extends TestCase
 {
