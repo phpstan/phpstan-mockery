@@ -28,12 +28,12 @@ class IsolatedMockeryTest extends TestCase
 
 	private function requireFoo2(Foo2 $foo): void
 	{
-		echo 'test';
+		usleep(1);
 	}
 
 	private function requireFoo3(Foo3 $foo): void
 	{
-		echo 'test';
+		usleep(1);
 	}
 
 }
