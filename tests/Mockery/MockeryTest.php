@@ -135,14 +135,17 @@ class MockeryTest extends TestCase
 
 	private function requireFoo(Foo $foo): void
 	{
+		echo 'test';
 	}
 
 	private function requireBaz(Baz $baz): void
 	{
+		echo 'test';
 	}
 
 	private function requireBuzz(Buzz $buzz): void
 	{
+		echo 'test';
 	}
 
 }
