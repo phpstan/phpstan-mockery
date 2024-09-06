@@ -15,11 +15,9 @@ use PHPStan\Type\Type;
 class StubMethodReflection implements MethodReflection
 {
 
-	/** @var ClassReflection */
-	private $declaringClass;
+	private ClassReflection $declaringClass;
 
-	/** @var string */
-	private $name;
+	private string $name;
 
 	public function __construct(ClassReflection $declaringClass, string $name)
 	{
@@ -68,7 +66,7 @@ class StubMethodReflection implements MethodReflection
 				TemplateTypeMap::createEmpty(),
 				[],
 				true,
-				new ObjectType('Mockery\\Expectation')
+				new ObjectType('Mockery\\Expectation'),
 			),
 		];
 	}

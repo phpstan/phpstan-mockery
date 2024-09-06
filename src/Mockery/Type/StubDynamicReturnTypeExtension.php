@@ -15,11 +15,9 @@ use function count;
 class StubDynamicReturnTypeExtension implements DynamicMethodReturnTypeExtension
 {
 
-	/** @var string */
-	private $stubInterfaceName;
+	private string $stubInterfaceName;
 
-	/** @var string */
-	private $stubMethodName;
+	private string $stubMethodName;
 
 	public function __construct(string $stubInterfaceName, string $stubMethodName)
 	{
@@ -40,9 +38,7 @@ class StubDynamicReturnTypeExtension implements DynamicMethodReturnTypeExtension
 	public function getTypeFromMethodCall(MethodReflection $methodReflection, MethodCall $methodCall, Scope $scope): ?Type
 	{
 		$calledOnType = $scope->getType($methodCall->var)->getObjectClassNames();
-		$names = array_values(array_filter($calledOnType, static function (string $name) {
-			return $name !== 'Mockery\\MockInterface';
-		}));
+		$names = array_values(array_filter($calledOnType, static fn (string $name) => $name !== 'Mockery\\MockInterface'));
 		if (count($names) !== 1) {
 			return null;
 		}

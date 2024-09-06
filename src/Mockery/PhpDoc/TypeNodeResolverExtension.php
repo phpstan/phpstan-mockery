@@ -14,8 +14,7 @@ use function count;
 class TypeNodeResolverExtension implements \PHPStan\PhpDoc\TypeNodeResolverExtension, TypeNodeResolverAwareExtension
 {
 
-	/** @var TypeNodeResolver */
-	private $typeNodeResolver;
+	private TypeNodeResolver $typeNodeResolver;
 
 	public function setTypeNodeResolver(TypeNodeResolver $typeNodeResolver): void
 	{

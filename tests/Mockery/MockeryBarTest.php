@@ -60,9 +60,7 @@ class MockeryBarTest extends MockeryTestCase
 		$this->fooSpy->shouldNotHaveReceived(null)->withArgs(['bar']);
 		$this->fooSpy->doBar('ccc');
 		$this->fooSpy->shouldNotHaveReceived('doBar', ['ddd']);
-		$this->fooSpy->shouldNotHaveReceived('doBar', static function (string $arg): bool {
-			return $arg !== 'ccc';
-		});
+		$this->fooSpy->shouldNotHaveReceived('doBar', static fn (string $arg): bool => $arg !== 'ccc');
 	}
 
 	public function testShouldHaveReceived(): void
@@ -72,9 +70,7 @@ class MockeryBarTest extends MockeryTestCase
 		$this->fooSpy->shouldHaveReceived('doFoo')->once();
 		$this->fooSpy->doBar('ccc');
 		$this->fooSpy->shouldHaveReceived('doBar', ['ccc']);
-		$this->fooSpy->shouldHaveReceived('doBar', static function (string $arg): bool {
-			return $arg === 'ccc';
-		});
+		$this->fooSpy->shouldHaveReceived('doBar', static fn (string $arg): bool => $arg === 'ccc');
 	}
 
 }

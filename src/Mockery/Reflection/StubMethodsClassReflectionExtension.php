@@ -11,11 +11,9 @@ use PHPStan\Reflection\ReflectionProvider;
 class StubMethodsClassReflectionExtension implements MethodsClassReflectionExtension
 {
 
-	/** @var ReflectionProvider */
-	private $reflectionProvider;
+	private ReflectionProvider $reflectionProvider;
 
-	/** @var string */
-	private $stubInterfaceName;
+	private string $stubInterfaceName;
 
 	public function __construct(ReflectionProvider $reflectionProvider, string $stubInterfaceName)
 	{
