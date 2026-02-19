@@ -9,9 +9,14 @@
 
 This extension provides the following features:
 
-* Interprets `Foo|\Mockery\MockInterface` in phpDoc so that it results in an intersection type instead of a union type.
-* `Mockery::mock()` and `Mockery::spy()` return an intersection type (see the [detailed explanation of intersection types](https://phpstan.org/blog/union-types-vs-intersection-types)) so that the returned object can be used as both the mock object and the mocked class object.
-* `shouldReceive()`, `allows()` and `expects()` methods can be called on the mock object and they work as expected.
+* `Mockery::mock()`, `Mockery::spy()`, and `Mockery::namedMock()` return an intersection type (e.g. `Foo&MockInterface`) so that the mock can be used as both the mocked class and a mock object. See the [detailed explanation of intersection types](https://phpstan.org/blog/union-types-vs-intersection-types).
+* Interprets `Foo|\Mockery\MockInterface` in phpDoc so that it results in an intersection type instead of a union type. This can be disabled by setting the `mockery.convertUnionToIntersectionType` parameter to `false`.
+* `shouldReceive()`, `shouldNotReceive()`, `shouldHaveReceived()`, `shouldNotHaveReceived()`, `allows()`, and `expects()` methods are understood on mock objects.
+* `makePartial()` and `shouldAllowMockingProtectedMethods()` return `static`, preserving the intersection type for chained calls.
+* Alias (`alias:`) and overload (`overload:`) mock prefixes are handled.
+* Partial mock syntax (`ClassName[methodName]`) is supported.
+* Multiple interfaces passed as comma-separated strings or as separate arguments are resolved.
+* Constructor argument arrays passed to `mock()` are handled correctly.
 
 
 ## Installation
