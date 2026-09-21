@@ -26,7 +26,10 @@ cs-fix:
 
 .PHONY: phpstan
 phpstan:
-	php vendor/bin/phpstan analyse -l 9 -c phpstan.neon src tests
+	php vendor/bin/phpstan analyse -c phpstan.neon
+
+phpstan-generate-baseline:
+	php vendor/bin/phpstan --generate-baseline
 
 name-collision:
 	php vendor/bin/detect-collisions --configuration collision-detector.json
