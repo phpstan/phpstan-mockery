@@ -8,10 +8,10 @@
 	"keywords": ["static analysis"],
     "require": {
         "php": "^7.4 || ^8.0",
-        "phpstan/phpstan": "^2.0"
+        "phpstan/phpstan": "^2.3"
     },
     "require-dev": {
-        "mockery/mockery": "^1.6.11",
+        "mockery/mockery": "^1.6.12",
         "php-parallel-lint/php-parallel-lint": "^1.2",
         "phpstan/phpstan-phpunit": "^2.0",
         "phpstan/phpstan-strict-rules": "^2.0",

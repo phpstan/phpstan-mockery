@@ -11,3 +11,33 @@ parameters:
 			count: 1
 			reportUnmatched: false
 			path: tests/Mockery/MockeryTest.php
+
+		-
+			rawMessage: 'Method PHPStan\Mockery\IsolatedMockeryTest::requireFoo2() has an unused parameter $foo.'
+			identifier: method.unusedParameter
+			count: 1
+			path: tests/Mockery/IsolatedMockeryTest.php
+
+		-
+			rawMessage: 'Method PHPStan\Mockery\IsolatedMockeryTest::requireFoo3() has an unused parameter $foo.'
+			identifier: method.unusedParameter
+			count: 1
+			path: tests/Mockery/IsolatedMockeryTest.php
+
+		-
+			rawMessage: 'Method PHPStan\Mockery\MockeryTest::requireBaz() has an unused parameter $baz.'
+			identifier: method.unusedParameter
+			count: 1
+			path: tests/Mockery/MockeryTest.php
+
+		-
+			rawMessage: 'Method PHPStan\Mockery\MockeryTest::requireBuzz() has an unused parameter $buzz.'
+			identifier: method.unusedParameter
+			count: 1
+			path: tests/Mockery/MockeryTest.php
+
+		-
+			rawMessage: 'Method PHPStan\Mockery\MockeryTest::requireFoo() has an unused parameter $foo.'
+			identifier: method.unusedParameter
+			count: 1
+			path: tests/Mockery/MockeryTest.php
