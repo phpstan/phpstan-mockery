@@ -11,3 +11,7 @@ parameters:
 	paths:
 		- src
 		- tests
+
+	excludePaths:
+		# the nested unions in it take phpstan-phpunit < 2.0.19 exponential time
+		- tests/Mockery/data/type-node-resolver.php
