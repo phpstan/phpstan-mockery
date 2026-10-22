@@ -19,11 +19,11 @@ jobs:
           egress-policy: audit
 
       - name: "Checkout"
-        uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6.1.0
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
 
       - name: Generate changelog
         id: changelog
-        uses: metcalfc/changelog-generator@bb7a08e07e326061351dab6ce89c72f13797043c # v4.9.1
+        uses: metcalfc/changelog-generator@031a6408a9ad7fa6dcda49b7222ab2b54110a680 # v5.0.1
         with:
           myToken: ${{ secrets.PHPSTAN_BOT_TOKEN }}
 
