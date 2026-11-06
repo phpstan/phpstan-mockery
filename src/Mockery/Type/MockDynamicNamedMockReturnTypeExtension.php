@@ -47,6 +47,9 @@ class MockDynamicNamedMockReturnTypeExtension implements DynamicStaticMethodRetu
 			$classType = $scope->getType($arg->value);
 			$constantStrings = $classType->getConstantStrings();
 			if (count($constantStrings) !== 1) {
+				if ($classType->isClassString()->yes()) {
+					$types[] = $classType->getClassStringObjectType();
+				}
 				continue;
 			}
 
