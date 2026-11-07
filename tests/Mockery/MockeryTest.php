@@ -134,9 +134,73 @@ class MockeryTest extends TestCase
 		self::assertSame('foo', $fooMock->doFoo());
 	}
 
+	public function testMockFromClassString(): void
+	{
+		$this->requireMocksFromClassString(Foo::class);
+
+		$fooMock = $this->mockFromClassString(Foo::class);
+		$this->requireFoo($fooMock);
+
+		$fooMock->allows()->doFoo()->andReturns('foo');
+		self::assertSame('foo', $fooMock->doFoo());
+	}
+
+	/**
+	 * @param class-string<Foo> $className
+	 */
+	private function requireMocksFromClassString(string $className): void
+	{
+		$this->requireFoo(Mockery::mock($className));
+		$this->requireFoo(Mockery::spy($className));
+		$this->requireFoo(Mockery::namedMock('FooFromClassString', $className));
+	}
+
+	/**
+	 * @template T of object
+	 * @param class-string<T> $className
+	 * @return T&MockInterface
+	 */
+	private function mockFromClassString(string $className): MockInterface
+	{
+		return Mockery::mock($className);
+	}
+
+	public function testMockFromClassStringUnion(): void
+	{
+		self::assertSame('foo', $this->doFooOnMockFromConstantClassStringUnion(true));
+		self::assertSame('foo', $this->doFooOnMockFromClassStringUnion(Bar::class));
+	}
+
+	private function doFooOnMockFromConstantClassStringUnion(bool $foo): ?string
+	{
+		$fooOrBarMock = Mockery::mock($foo ? Foo::class : Bar::class);
+		$fooOrBarMock->shouldReceive('doFoo')->andReturn('foo');
+
+		return $this->doFooOnFooOrBar($fooOrBarMock);
+	}
+
+	/**
+	 * @param class-string<Foo>|class-string<Bar> $className
+	 */
+	private function doFooOnMockFromClassStringUnion(string $className): ?string
+	{
+		$fooOrBarMock = Mockery::mock($className);
+		$fooOrBarMock->shouldReceive('doFoo')->andReturn('foo');
+
+		return $this->doFooOnFooOrBar($fooOrBarMock);
+	}
+
 	private function requireFoo(Foo $foo): void
 	{
 		usleep(1);
+	}
+
+	/**
+	 * @param Foo|Bar $fooOrBar
+	 */
+	private function doFooOnFooOrBar($fooOrBar): ?string
+	{
+		return $fooOrBar->doFoo();
 	}
 
 	private function requireBaz(Baz $baz): void

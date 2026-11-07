@@ -13,6 +13,20 @@ parameters:
 			path: tests/Mockery/MockeryTest.php
 
 		-
+			rawMessage: 'Parameter #1 ...$args of static method Mockery::namedMock() expects array<mixed>|class-string<FooFromClassString>|FooFromClassString, string given.'
+			identifier: argument.type
+			count: 1
+			reportUnmatched: false
+			path: tests/Mockery/MockeryTest.php
+
+		-
+			rawMessage: 'Parameter #2 ...$args of static method Mockery::namedMock() expects array<mixed>|class-string<FooFromClassString>|FooFromClassString, class-string<PHPStan\Mockery\Foo> given.'
+			identifier: argument.type
+			count: 1
+			reportUnmatched: false
+			path: tests/Mockery/MockeryTest.php
+
+		-
 			rawMessage: 'Method PHPStan\Mockery\IsolatedMockeryTest::requireFoo2() has an unused parameter $foo.'
 			identifier: method.unusedParameter
 			count: 1
