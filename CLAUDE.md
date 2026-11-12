@@ -114,3 +114,4 @@ CI jobs:
 2. **Coding Standard** — phpcs with build-cs on PHP 8.2
 3. **Tests** — PHPUnit across all PHP versions with lowest/highest dependencies
 4. **PHPStan** — self-analysis across all PHP versions with lowest/highest dependencies
+5. **Mutation Testing** — Infection (via `phpstan/build-infection`) on PHP 8.3–8.5, pull requests only, requires 100% MSI on changed lines
