@@ -8,6 +8,8 @@ includes:
 
 parameters:
 	level: 9
+	resultCachePath: tmp/resultCache.php
+
 	paths:
 		- src
 		- tests
